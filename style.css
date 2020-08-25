@@ -1,1 +1,52 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+body {
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+body .jumbotron {
+  width: 100%;
+  max-width: 768px;
+  min-height: 100px;
+  border-radius: 0 !important;
+  background-color: #181818;
+  margin-bottom: 30px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+
+body #buttons {
+  margin-bottom: 35px;
+}
+
+body #buttons .btn-info {
+  background-color: #242424;
+  color: #e4e4e4;
+  border-color: grey;
+}
+
+body #buttons .btn-info:hover {
+  color: white;
+}
+
+body #library {
+  max-width: 768px;
+}
+
+body #library .bookCard {
+  width: 45%;
+  margin-bottom: 30px;
+  border-radius: 0 !important;
+  padding: 10px;
+  background-color: #f6ffff;
+}
+
+body #library .bookCard .card-title {
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 768px) {
+  body #library .bookCard {
+    width: 90%;
+  }
+}
+/*# sourceMappingURL=style.css.map */
