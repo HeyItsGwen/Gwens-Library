@@ -1,4 +1,7 @@
 let library = document.getElementById("library");
+let form = document.getElementById('book-form')
+let addBookButton = document.getElementById('add-book-button');
+let cancelButton = document.getElementById('cancel-button');
 
 let books = [];
 
@@ -8,7 +11,6 @@ class Book {
         this.author = author;
         this.pages = pages;
         this.read = read;
-        this.isRead = this.read ? 'read it.' : 'not read it.';
     }
 }
 
@@ -37,6 +39,15 @@ const render = () => {
         //give title text
         bookTitle.textContent = books[book].title;
 
+        //create author
+        let author = document.createElement('p');
+        //append author to div
+        containerDiv.appendChild(author);
+        //give author class card-subtitle
+        author.classList.add('card-subtitle');
+        //give author text
+        author.textContent = books[book].author;
+
         //create page count
         let pageCount = document.createElement('p');
         //append page count to div
@@ -55,7 +66,21 @@ const render = () => {
         //give read status text
         read.textContent = books[book].read ? 'You\'ve read this book.' : 'You haven\'t read this book';
 
+        
+
     }
+}
+
+const removeDNone = () => {
+    form.classList.add('d-flex');
+    form.classList.remove('d-none');
+    addBookButton.classList.add('d-none');
+}
+
+const addDNone = () => {
+    form.classList.add('d-none');
+    form.classList.remove('d-flex');
+    addBookButton.classList.remove('d-none');
 }
 
 let thisbook = addBook('Book1','me',44,true);
@@ -64,3 +89,5 @@ let anotherbook = addBook('Book3','someone',99,false);
 let fourhtbook= addBook('Book4','a person',4,true);
 
 document.addEventListener("DOMContentLoaded", render);
+addBookButton.addEventListener("click", removeDNone);
+cancelButton.addEventListener('click',addDNone);

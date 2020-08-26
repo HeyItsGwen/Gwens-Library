@@ -14,18 +14,33 @@ body .jumbotron {
   clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
 }
 
-body #buttons {
+body #new-book-form {
   margin-bottom: 35px;
+  min-height: 38px;
 }
 
-body #buttons .btn-info {
+body #new-book-form .btn-info {
   background-color: #242424;
   color: #e4e4e4;
   border-color: grey;
 }
 
-body #buttons .btn-info:hover {
+body #new-book-form .btn-info:hover {
   color: white;
+}
+
+body #new-book-form #book-form {
+  position: absolute;
+  z-index: 1;
+  padding: 20px;
+  left: 38%;
+  border: 1px solid #181818;
+  background-color: #181818;
+  color: whitesmoke;
+}
+
+body #new-book-form #book-form #submit-cancel {
+  width: 100%;
 }
 
 body #library {

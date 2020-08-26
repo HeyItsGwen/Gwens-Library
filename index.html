@@ -13,9 +13,30 @@
 
   </header>
 
-  <section id='buttons'>
-    <button class='btn btn-info'>Add Book</button>
-    
+  <section id='new-book-form'>
+    <button id='add-book-button' class='btn btn-info'>Add Book</button>
+    <form id='book-form' class='flex-column align-items-center d-none'>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='title'>Book Title</label>
+        <input type='text' class='form-control' id='title-input' placeholder='Title'>
+      </div>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='Author'>Author</label>
+        <input type='text' class='form-control' id='author-input' placeholder='Author'>
+      </div>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='pages'>Page Count</label>
+        <input type='number' class='form-control' id='page-input' placeholder='-----'>
+      </div>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='read'>Have you read it?</label>
+        <input type='checkbox' class='form-control' id='' placeholder=''>
+      </div>
+      <section id='submit-cancel' class='d-flex justify-content-around'>
+        <button type='button' id='submit-button' class='btn btn-info'>Submit</button>
+        <button type='button' id='cancel-button' class='btn btn-info'>Cancel</button>
+      </section>
+    </form>
   </section>
 
   <section id='library' class='d-flex flex-wrap justify-content-around'>
