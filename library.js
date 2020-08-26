@@ -2,6 +2,10 @@ let library = document.getElementById("library");
 let form = document.getElementById('book-form')
 let addBookButton = document.getElementById('add-book-button');
 let cancelButton = document.getElementById('cancel-button');
+let removeButtonDOM = document.getElementById('remove-button');
+let submitButton = document.getElementById('submit-button');
+
+document.getElementById('read-input').checked = false;
 
 let books = [];
 
@@ -20,7 +24,7 @@ const addBook = (title,author,pages,read) => {
 }
 
 const render = () => {
-    library.innerHtml = '';
+    library.textContent = '';
     for (book in books){
         //create div
         let containerDiv = document.createElement('div');
@@ -31,7 +35,7 @@ const render = () => {
         containerDiv.classList.add('bookCard');
 
         //create title
-        let bookTitle = document.createElement('h3');
+        let bookTitle = document.createElement('h2');
         //append title to div
         containerDiv.appendChild(bookTitle);
         //give title class card-title
@@ -46,7 +50,7 @@ const render = () => {
         //give author class card-subtitle
         author.classList.add('card-subtitle');
         //give author text
-        author.textContent = books[book].author;
+        author.textContent = 'By ' + books[book].author;
 
         //create page count
         let pageCount = document.createElement('p');
@@ -66,8 +70,19 @@ const render = () => {
         //give read status text
         read.textContent = books[book].read ? 'You\'ve read this book.' : 'You haven\'t read this book';
 
-        
-
+        //create remove book button
+        let removeButton = document.createElement('button');
+        //append to div
+        containerDiv.appendChild(removeButton);
+        //give button class btn btn-danger
+        removeButton.classList.add('btn');
+        removeButton.classList.add('btn-danger');
+        removeButton.setAttribute('id','remove-button')
+        //give button text
+        removeButton.textContent = 'remove';
+        //give button book array data
+        removeButton.setAttribute('data-arrayLoc', book);
+        removeButton.setAttribute('onCLick','removeBook(this)');
     }
 }
 
@@ -83,10 +98,31 @@ const addDNone = () => {
     addBookButton.classList.remove('d-none');
 }
 
+const removeBook = (element) => {
+    books.splice(element.getAttribute('data-arrayLoc'),1);
+    render();
+}
+
 let thisbook = addBook('Book1','me',44,true);
 let thatbook = addBook('Book2','you',65,false);
 let anotherbook = addBook('Book3','someone',99,false);
 let fourhtbook= addBook('Book4','a person',4,true);
+
+submitButton.addEventListener('click', () => {
+    let title = document.getElementById('title-input').value;
+    let author = document.getElementById('author-input').value;
+    let pages = document.getElementById('page-input').value;
+    let read = document.getElementById('read-input').checked ? true : false;
+
+    if (title == '' || author == '' || pages == ''){
+        console.log('warning');
+    } else {
+        let newBook = addBook(title,author,pages,read);
+        form.reset();
+        addDNone();
+        render();
+    }
+});
 
 document.addEventListener("DOMContentLoaded", render);
 addBookButton.addEventListener("click", removeDNone);

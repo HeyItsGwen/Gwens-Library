@@ -9,8 +9,9 @@
 </head>
 <body class='d-flex flex-column align-items-center'>
 
-  <header class='jumbotron'>
-
+  <header class='jumbotron d-flex flex-column'>
+    <button type='button' id='login' class='btn btn-info align-self-end'>Login</button>
+    <h1 class='text-center align-self-center'>YOUR LIBRARY</h1>
   </header>
 
   <section id='new-book-form'>
@@ -30,7 +31,7 @@
       </div>
       <div class='form-group d-flex flex-column align-items-center'>
         <label for='read'>Have you read it?</label>
-        <input type='checkbox' class='form-control' id='' placeholder=''>
+        <input type='checkbox' class='form-control' id='read-input' placeholder=''>
       </div>
       <section id='submit-cancel' class='d-flex justify-content-around'>
         <button type='button' id='submit-button' class='btn btn-info'>Submit</button>

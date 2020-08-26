@@ -1,16 +1,35 @@
 body {
   width: 100%;
-  background-color: whitesmoke;
+  background-color: rgb(24, 24, 24);
 
   .jumbotron {
     width: 100%;
     max-width: 768px;
     min-height: 100px;
+    max-height: 150px;
     border-radius: 0 !important;
-    background-color: rgb(24, 24, 24);
+    background-color: whitesmoke;
     margin-bottom: 30px;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+
+    h1 {
+      font-weight: bold;
+      font-size: 2.8em;
+
+      @media only screen and (max-width: 560px) {
+        position: relative;
+        top: 34px;
+      }
+    }
+
+    .btn-info {
+      @media only screen and (min-width: 580px) {
+        position: relative;
+        top: -50px;
+        left: 20px;
+      }
+    }
   }
 
   #new-book-form {
@@ -44,17 +63,36 @@ body {
   }
 
   #library {
-    max-width: 768px;
+
+    min-width: 95%;
+
+    .btn-danger {
+      background-color:rgb(24, 24, 24);
+      color: whitesmoke;
+      border-color: rgb(97, 0, 0);
+
+      &:hover {
+        color: white;
+        border-color: rgb(189, 0, 0);
+      }
+    }
   
     .bookCard {
       width: 45%;
       margin-bottom: 30px;
       border-radius: 0 !important;
       padding: 10px;
-      background-color: rgb(246, 255, 255);
+      background-color: rgb(24, 24, 24);
+      color: whitesmoke;
+      border: 1px solid whitesmoke;
 
       .card-title {
         font-weight: 600;
+        text-align: right;
+      }
+
+      .card-subtitle {
+        text-align: right;
       }
 
       @media only screen and (max-width: 768px){
