@@ -72,6 +72,10 @@ body #library .btn-danger {
   background-color: #181818;
   color: whitesmoke;
   border-color: #610000;
+  width: 35%;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
 }
 
 body #library .btn-danger:hover {
