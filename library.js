@@ -180,6 +180,7 @@ firebase.auth().getRedirectResult().then(function(result) {
     var errorMessage = error.message;
     var email = error.email;
     var credential = error.credential;
+    return errorMessage;
   });
   
 const logout = () => {
