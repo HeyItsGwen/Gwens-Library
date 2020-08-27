@@ -7,7 +7,7 @@ let submitButton = document.getElementById('submit-button');
 let loginButton = document.getElementById('login');
 let logoutButton = document.getElementById('logout');
 
-let jumboName = document.getElementById('username');
+let jumboName = document.getElementById('jumboname');
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -200,10 +200,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       loginButton.classList.add('d-none');
       logoutButton.classList.remove('d-none');
-      jumboName.innerText = user.displayName;
+      jumboName.innerText = user.displayName + "'s LIBRARY";
     } else {
       loginButton.classList.remove('d-none');
       logoutButton.classList.add('d-none');
-      jumboName.innserText = 'YOUR';
+      jumboName.innserText = 'YOUR LIBRARY';
     }
   });
