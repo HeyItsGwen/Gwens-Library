@@ -119,7 +119,6 @@ booksRef.on('value', function(snapshot) {
     for (book in stuff){
         let title = stuff[book].title;
         books[title] = stuff[book];
-        console.log(stuff[book]);
     }
     render();
     }, function(errorObject){
@@ -175,7 +174,6 @@ firebase.auth().getRedirectResult().then(function(result) {
     if (result.credential) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
-      console.log(user + ' logged in');
     }
     // The signed-in user info.
     var user = result.user;
@@ -199,8 +197,12 @@ const logout = () => {
 
 }
 
+const getUser = () => {
+    console.log(user + ' logged in');
+}
+
 logoutButton.addEventListener('click',logout);
-console.log(user + ' logged in');
 render();
 addBookButton.addEventListener("click", removeDNone);
 cancelButton.addEventListener('click',addDNone);
+document.addEventListener('DOMContentLoaded',getUser);
