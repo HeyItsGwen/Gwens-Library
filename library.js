@@ -5,9 +5,27 @@ let cancelButton = document.getElementById('cancel-button');
 let removeButtonDOM = document.getElementById('remove-button');
 let submitButton = document.getElementById('submit-button');
 
-document.getElementById('read-input').checked = false;
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBD5pe1KLgX7E3mfWEPFIgOzjYEcwExt4s",
+    authDomain: "gwens-library.firebaseapp.com",
+    databaseURL: "https://gwens-library.firebaseio.com",
+    projectId: "gwens-library",
+    storageBucket: "gwens-library.appspot.com",
+    messagingSenderId: "896544782577",
+    appId: "1:896544782577:web:23127a4242ebd128311150",
+    measurementId: "G-Y1VCJEV1YJ"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
+var ref = database.ref("index");
+var indexRef = ref.child('books-holder');
+var booksRef = indexRef.child('books');
 
-let books = [];
+let books = {};
+
+document.getElementById('read-input').checked = false;
 
 class Book {
     constructor(title,author,pages,read) {
@@ -20,7 +38,10 @@ class Book {
 
 const addBook = (title,author,pages,read) => {
     let newBook = new Book(title,author,pages,read);
-    books.push(newBook);
+    books[title] = newBook;
+    indexRef.set({
+        books
+    });
 }
 
 const render = () => {
@@ -86,6 +107,21 @@ const render = () => {
     }
 }
 
+
+booksRef.on('value', function(snapshot) {
+    //console.log(snapshot.val());
+    let stuff = snapshot.val();
+    for (book in stuff){
+        let title = stuff[book].title;
+        books[title] = stuff[book];
+        console.log(stuff[book]);
+    }
+    render();
+    }, function(errorObject){
+        console.log('The read failed: ' + errorObject.code);
+    }
+);
+
 const removeDNone = () => {
     form.classList.add('d-flex');
     form.classList.remove('d-none');
@@ -99,14 +135,14 @@ const addDNone = () => {
 }
 
 const removeBook = (element) => {
-    books.splice(element.getAttribute('data-arrayLoc'),1);
+    let location = element.getAttribute('data-arrayLoc');
+    delete books[location];
+    var indexRef = ref.child('books-holder');
+    indexRef.set({
+        books
+    });
     render();
 }
-
-let thisbook = addBook('Book1','me',44,true);
-let thatbook = addBook('Book2','you',65,false);
-let anotherbook = addBook('Book3','someone',99,false);
-let fourhtbook= addBook('Book4','a person',4,true);
 
 submitButton.addEventListener('click', () => {
     let title = document.getElementById('title-input').value;
@@ -124,6 +160,6 @@ submitButton.addEventListener('click', () => {
     }
 });
 
-document.addEventListener("DOMContentLoaded", render);
+render();
 addBookButton.addEventListener("click", removeDNone);
 cancelButton.addEventListener('click',addDNone);
