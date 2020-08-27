@@ -204,4 +204,3 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log('nobody signed in')
     }
   });
-  
