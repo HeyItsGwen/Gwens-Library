@@ -198,12 +198,13 @@ cancelButton.addEventListener('click',addDNone);
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      loginButton.classList.add('d-none');
-      logoutButton.classList.remove('d-none');
-      jumboName.innerText = user.displayName.toUpperCase() + "'s LIBRARY";
+        let displayname = user.displayName.toString();
+        loginButton.classList.add('d-none');
+        logoutButton.classList.remove('d-none');
+        jumboName.innerText = displayname.toUpperCase() + "'s LIBRARY";
     } else {
-      loginButton.classList.remove('d-none');
-      logoutButton.classList.add('d-none');
-      jumboName.innserText = 'YOUR LIBRARY';
+        loginButton.classList.remove('d-none');
+        logoutButton.classList.add('d-none');
+        jumboName.innserText = 'YOUR LIBRARY';
     }
   });
