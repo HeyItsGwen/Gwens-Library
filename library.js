@@ -27,8 +27,6 @@ var booksRef = indexRef.child('books');
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
-var user = firebase.auth().currentUser;
-
 let books = {};
 
 document.getElementById('read-input').checked = false;
@@ -178,31 +176,31 @@ firebase.auth().getRedirectResult().then(function(result) {
     // The signed-in user info.
     var user = result.user;
   }).catch(function(error) {
-    // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    // The email of the user's account used.
     var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
-    // ...
   });
   
 const logout = () => {
     firebase.auth().signOut().then(function() {
-        console.log('signed out');
       }).catch(function(error) {
-        console.log('not signed out');
       });
 
 }
 
-const getUser = () => {
-    console.log(user + ' logged in');
-}
+
 
 logoutButton.addEventListener('click',logout);
 render();
 addBookButton.addEventListener("click", removeDNone);
 cancelButton.addEventListener('click',addDNone);
-document.addEventListener('DOMContentLoaded',getUser);
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(user + ' is logged in.')
+    } else {
+      console.log('nobody signed in')
+    }
+  });
+  
