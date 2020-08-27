@@ -143,22 +143,6 @@ const removeBook = (element) => {
     render();
 }
 
-submitButton.addEventListener('click', () => {
-    let title = document.getElementById('title-input').value;
-    let author = document.getElementById('author-input').value;
-    let pages = document.getElementById('page-input').value;
-    let read = document.getElementById('read-input').checked ? true : false;
-
-    if (title == '' || author == '' || pages == ''){
-        console.log('warning');
-    } else {
-        let newBook = addBook(title,author,pages,read);
-        form.reset();
-        addDNone();
-        render();
-    }
-});
-
 const loginRedirect = () => {
     firebase.auth().signInWithRedirect(provider);
 }
@@ -201,6 +185,22 @@ firebase.auth().onAuthStateChanged(function(user) {
                 books
             });
         }
+
+        submitButton.addEventListener('click', () => {
+            let title = document.getElementById('title-input').value;
+            let author = document.getElementById('author-input').value;
+            let pages = document.getElementById('page-input').value;
+            let read = document.getElementById('read-input').checked ? true : false;
+        
+            if (title == '' || author == '' || pages == ''){
+                console.log('warning');
+            } else {
+                let newBook = addBook(title,author,pages,read);
+                form.reset();
+                addDNone();
+                render();
+            }
+        });
 
         addBookButton.addEventListener("click", removeDNone);
         cancelButton.addEventListener('click',addDNone);
