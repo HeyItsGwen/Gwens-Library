@@ -165,6 +165,7 @@ submitButton.addEventListener('click', () => {
 
 const loginRedirect = () => {
     firebase.auth().signInWithRedirect(provider);
+    console.log('hello');
 }
 
 loginButton.addEventListener('click', loginRedirect)
