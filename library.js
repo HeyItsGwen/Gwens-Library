@@ -5,7 +5,7 @@ let cancelButton = document.getElementById('cancel-button');
 let removeButtonDOM = document.getElementById('remove-button');
 let submitButton = document.getElementById('submit-button');
 let loginButton = document.getElementById('login');
-let logoutButton = document.getEelementById('logout');
+let logoutButton = document.getElementById('logout');
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
