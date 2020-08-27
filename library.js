@@ -190,8 +190,6 @@ const logout = () => {
 
 }
 
-
-
 logoutButton.addEventListener('click',logout);
 render();
 addBookButton.addEventListener("click", removeDNone);
@@ -199,8 +197,8 @@ cancelButton.addEventListener('click',addDNone);
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log(user.displayName + ' is logged in.')
+      console.log(user.displayName + ' is logged in.');
     } else {
-      console.log('nobody signed in')
+      console.log('nobody signed in');
     }
   });
