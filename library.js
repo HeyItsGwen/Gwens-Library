@@ -48,6 +48,7 @@ class Book {
 const render = () => {
     library.textContent = '';
     for (book in books){
+        if (books[book].hasOwnProperty('author'){
         //create div
         let containerDiv = document.createElement('div');
         //append div to library
@@ -105,6 +106,7 @@ const render = () => {
         //give button book array data
         removeButton.setAttribute('data-arrayLoc', book);
         removeButton.setAttribute('onCLick','removeBook(this)');
+        })
     }
 }
 
