@@ -206,6 +206,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
         loginButton.classList.remove('d-none');
         logoutButton.classList.add('d-none');
-        jumboName.innserText = 'YOUR LIBRARY';
+        jumboName.innerText = 'YOUR LIBRARY';
     }
   });
