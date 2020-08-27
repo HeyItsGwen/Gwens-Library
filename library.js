@@ -113,7 +113,6 @@ const render = () => {
     }
 }
 
-
 booksRef.on('value', function(snapshot) {
     //console.log(snapshot.val());
     let stuff = snapshot.val();
@@ -168,7 +167,6 @@ submitButton.addEventListener('click', () => {
 
 const loginRedirect = () => {
     firebase.auth().signInWithRedirect(provider);
-    console.log(user);
 }
 
 loginButton.addEventListener('click', loginRedirect)
@@ -177,7 +175,7 @@ firebase.auth().getRedirectResult().then(function(result) {
     if (result.credential) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
-      console.log(token);
+      console.log(user);
     }
     // The signed-in user info.
     var user = result.user;
@@ -196,9 +194,9 @@ const logout = () => {
     firebase.auth().signOut().then(function() {
         console.log('signed out');
       }).catch(function(error) {
-        // An error happened.
+        console.log('not signed out');
       });
-      
+
 }
 
 logoutButton.addEventListener('click',logout);
