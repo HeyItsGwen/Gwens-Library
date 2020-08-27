@@ -197,8 +197,10 @@ cancelButton.addEventListener('click',addDNone);
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log(user.displayName + ' is logged in.');
+      loginButton.classList.add('d-none');
+      logoutButton.classList.remove('d-none');
     } else {
-      console.log('nobody signed in');
+      loginButton.classList.remove('d-none');
+      logoutButton.classList.add('d-none');
     }
   });
