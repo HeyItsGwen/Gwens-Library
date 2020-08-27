@@ -25,7 +25,9 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 var ref = database.ref("index");
 var indexRef = ref.child('books-holder');
-var booksRef = indexRef.child('books');
+
+var defaultRef = indexRef.child('default')
+var usersRef = indexRef.child('users');
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -42,13 +44,6 @@ class Book {
     }
 }
 
-const addBook = (title,author,pages,read) => {
-    let newBook = new Book(title,author,pages,read);
-    books[title] = newBook;
-    indexRef.set({
-        books
-    });
-}
 
 const render = () => {
     library.textContent = '';
@@ -113,7 +108,7 @@ const render = () => {
     }
 }
 
-booksRef.on('value', function(snapshot) {
+usersRef.on('value', function(snapshot) {
     //console.log(snapshot.val());
     let stuff = snapshot.val();
     for (book in stuff){
@@ -191,16 +186,21 @@ const logout = () => {
       });
 }
 
-logoutButton.addEventListener('click',logout);
-addBookButton.addEventListener("click", removeDNone);
-cancelButton.addEventListener('click',addDNone);
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         let displayname = user.displayName.toString();
         loginButton.classList.add('d-none');
         logoutButton.classList.remove('d-none');
         jumboName.innerText = displayname.toUpperCase() + "'s LIBRARY";
+
+        
+        const addBook = (title,author,pages,read) => {
+            let newBook = new Book(title,author,pages,read);
+            books[title] = newBook;
+            usersRef.set({
+                books
+            });
+        }
 
         render();
     } else {
@@ -209,3 +209,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         jumboName.innerText = 'YOUR LIBRARY';
     }
   });
+
+logoutButton.addEventListener('click',logout);
+addBookButton.addEventListener("click", removeDNone);
+cancelButton.addEventListener('click',addDNone);
