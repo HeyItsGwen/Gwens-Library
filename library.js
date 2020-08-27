@@ -192,7 +192,7 @@ firebase.auth().getRedirectResult().then(function(result) {
   
 const logout = () => {
     firebase.auth().signOut().then(function() {
-        // Sign-out successful.
+        console.log('signed out');
       }).catch(function(error) {
         // An error happened.
       });
