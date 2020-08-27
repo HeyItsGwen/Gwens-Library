@@ -192,7 +192,7 @@ const logout = () => {
 
 }
 
-console.log(user);
+console.log(user+'l;aksjdf;l');
 
 logoutButton.addEventListener('click',logout);
 render();
