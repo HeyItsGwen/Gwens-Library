@@ -27,6 +27,8 @@ var booksRef = indexRef.child('books');
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
+var user = firebase.auth().currentUser;
+
 let books = {};
 
 document.getElementById('read-input').checked = false;
@@ -166,7 +168,7 @@ submitButton.addEventListener('click', () => {
 
 const loginRedirect = () => {
     firebase.auth().signInWithRedirect(provider);
-    console.log('hello');
+    console.log(user);
 }
 
 loginButton.addEventListener('click', loginRedirect)
