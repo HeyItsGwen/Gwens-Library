@@ -200,7 +200,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       loginButton.classList.add('d-none');
       logoutButton.classList.remove('d-none');
-      jumboName.innerText = user.displayName + "'s LIBRARY";
+      jumboName.innerText = user.displayName.toUpperCase() + "'s LIBRARY";
     } else {
       loginButton.classList.remove('d-none');
       logoutButton.classList.add('d-none');
