@@ -7,6 +7,8 @@ let submitButton = document.getElementById('submit-button');
 let loginButton = document.getElementById('login');
 let logoutButton = document.getElementById('logout');
 
+let jumboName = document.getElementById('username');
+
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBD5pe1KLgX7E3mfWEPFIgOzjYEcwExt4s",
@@ -187,7 +189,6 @@ const logout = () => {
     firebase.auth().signOut().then(function() {
       }).catch(function(error) {
       });
-
 }
 
 logoutButton.addEventListener('click',logout);
@@ -199,8 +200,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       loginButton.classList.add('d-none');
       logoutButton.classList.remove('d-none');
+      jumboName.innerText = user.displayName;
     } else {
       loginButton.classList.remove('d-none');
       logoutButton.classList.add('d-none');
+      jumboName.innserText = 'YOUR';
     }
   });
