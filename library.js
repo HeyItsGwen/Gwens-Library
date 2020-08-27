@@ -202,6 +202,7 @@ cancelButton.addEventListener('click',addDNone);
 firebase.auth().onAuthStateChanged(function(users) {
     if (users) {
       console.log(users + ' is logged in.')
+      console.log(user+'l;aksjdf;l');
     } else {
       console.log('nobody signed in')
     }
