@@ -4,6 +4,7 @@ let addBookButton = document.getElementById('add-book-button');
 let cancelButton = document.getElementById('cancel-button');
 let removeButtonDOM = document.getElementById('remove-button');
 let submitButton = document.getElementById('submit-button');
+let loginButton = document.getElementById('login');
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -22,6 +23,8 @@ var database = firebase.database();
 var ref = database.ref("index");
 var indexRef = ref.child('books-holder');
 var booksRef = indexRef.child('books');
+
+var provider = new firebase.auth.GoogleAuthProvider();
 
 let books = {};
 
@@ -159,6 +162,32 @@ submitButton.addEventListener('click', () => {
         render();
     }
 });
+
+const loginRedirect = () => {
+    firebase.auth().signInWithRedirect(provider);
+}
+
+loginButton.addEventListener('click', loginRedirect)
+
+firebase.auth().getRedirectResult().then(function(result) {
+    if (result.credential) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      console.log(token);
+    }
+    // The signed-in user info.
+    var user = result.user;
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  
 
 render();
 addBookButton.addEventListener("click", removeDNone);
