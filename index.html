@@ -9,18 +9,43 @@
 </head>
 <body class='d-flex flex-column align-items-center'>
 
-  <header class='jumbotron'>
-
+  <header class='jumbotron d-flex flex-column'>
+    <button type='button' id='login' class='btn btn-info align-self-end'>Login</button>
+    <h1 class='text-center align-self-center'>YOUR LIBRARY</h1>
   </header>
 
-  <section id='buttons'>
-    <button class='btn btn-info'>Add Book</button>
-    
+  <section id='new-book-form'>
+    <button id='add-book-button' class='btn btn-info'>Add Book</button>
+    <form id='book-form' class='flex-column align-items-center d-none'>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='title'>Book Title</label>
+        <input type='text' class='form-control' id='title-input' placeholder='Title'>
+      </div>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='Author'>Author</label>
+        <input type='text' class='form-control' id='author-input' placeholder='Author'>
+      </div>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='pages'>Page Count</label>
+        <input type='number' class='form-control' id='page-input' placeholder='-----'>
+      </div>
+      <div class='form-group d-flex flex-column align-items-center'>
+        <label for='read'>Have you read it?</label>
+        <input type='checkbox' class='form-control' id='read-input' placeholder=''>
+      </div>
+      <section id='submit-cancel' class='d-flex justify-content-around'>
+        <button type='button' id='submit-button' class='btn btn-info'>Submit</button>
+        <button type='button' id='cancel-button' class='btn btn-info'>Cancel</button>
+      </section>
+    </form>
   </section>
 
   <section id='library' class='d-flex flex-wrap justify-content-around'>
 
   </section>
+
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

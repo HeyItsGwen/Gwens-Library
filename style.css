@@ -1,35 +1,86 @@
 body {
   width: 100%;
-  background-color: whitesmoke;
+  background-color: #181818;
 }
 
 body .jumbotron {
   width: 100%;
   max-width: 768px;
   min-height: 100px;
+  max-height: 150px;
   border-radius: 0 !important;
-  background-color: #181818;
+  background-color: whitesmoke;
   margin-bottom: 30px;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
 }
 
-body #buttons {
-  margin-bottom: 35px;
+body .jumbotron h1 {
+  font-weight: bold;
+  font-size: 2.8em;
 }
 
-body #buttons .btn-info {
+@media only screen and (max-width: 560px) {
+  body .jumbotron h1 {
+    position: relative;
+    top: 34px;
+  }
+}
+
+@media only screen and (min-width: 580px) {
+  body .jumbotron .btn-info {
+    position: relative;
+    top: -50px;
+    left: 20px;
+  }
+}
+
+body #new-book-form {
+  margin-bottom: 35px;
+  min-height: 38px;
+}
+
+body #new-book-form .btn-info {
   background-color: #242424;
   color: #e4e4e4;
   border-color: grey;
 }
 
-body #buttons .btn-info:hover {
+body #new-book-form .btn-info:hover {
   color: white;
 }
 
+body #new-book-form #book-form {
+  position: absolute;
+  z-index: 1;
+  padding: 20px;
+  left: 38%;
+  border: 1px solid #181818;
+  background-color: #181818;
+  color: whitesmoke;
+}
+
+body #new-book-form #book-form #submit-cancel {
+  width: 100%;
+}
+
 body #library {
-  max-width: 768px;
+  min-width: 95%;
+}
+
+body #library .btn-danger {
+  background-color: #181818;
+  color: whitesmoke;
+  border-color: #610000;
+  width: 35%;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+}
+
+body #library .btn-danger:hover {
+  color: white;
+  border-color: #bd0000;
 }
 
 body #library .bookCard {
@@ -37,11 +88,18 @@ body #library .bookCard {
   margin-bottom: 30px;
   border-radius: 0 !important;
   padding: 10px;
-  background-color: #f6ffff;
+  background-color: #292929;
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
 }
 
 body #library .bookCard .card-title {
   font-weight: 600;
+  text-align: right;
+}
+
+body #library .bookCard .card-subtitle {
+  text-align: right;
 }
 
 @media only screen and (max-width: 768px) {
