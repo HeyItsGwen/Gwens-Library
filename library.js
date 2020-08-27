@@ -168,13 +168,15 @@ const loginRedirect = () => {
 
 loginButton.addEventListener('click', loginRedirect);
 
+let user;
+
 firebase.auth().getRedirectResult().then(function(result) {
     if (result.credential) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
     }
     // The signed-in user info.
-    var user = result.user;
+    user = result.user;
   }).catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -190,16 +192,16 @@ const logout = () => {
 
 }
 
-
+console.log(user);
 
 logoutButton.addEventListener('click',logout);
 render();
 addBookButton.addEventListener("click", removeDNone);
 cancelButton.addEventListener('click',addDNone);
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log(user + ' is logged in.')
+firebase.auth().onAuthStateChanged(function(users) {
+    if (users) {
+      console.log(users + ' is logged in.')
     } else {
       console.log('nobody signed in')
     }
