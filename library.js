@@ -202,6 +202,8 @@ firebase.auth().onAuthStateChanged(function(user) {
             });
         }
 
+        addBookButton.addEventListener("click", removeDNone);
+        cancelButton.addEventListener('click',addDNone);
         render();
     } else {
         loginButton.classList.remove('d-none');
@@ -211,5 +213,3 @@ firebase.auth().onAuthStateChanged(function(user) {
   });
 
 logoutButton.addEventListener('click',logout);
-addBookButton.addEventListener("click", removeDNone);
-cancelButton.addEventListener('click',addDNone);
