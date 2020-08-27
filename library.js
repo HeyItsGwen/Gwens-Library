@@ -5,6 +5,7 @@ let cancelButton = document.getElementById('cancel-button');
 let removeButtonDOM = document.getElementById('remove-button');
 let submitButton = document.getElementById('submit-button');
 let loginButton = document.getElementById('login');
+let logoutButton = document.getEelementById('logout');
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -189,6 +190,16 @@ firebase.auth().getRedirectResult().then(function(result) {
     // ...
   });
   
+const logout = () => {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
+      
+}
+
+logoutButton.addEventListener('click',logout);
 
 render();
 addBookButton.addEventListener("click", removeDNone);
