@@ -192,7 +192,6 @@ const logout = () => {
 }
 
 logoutButton.addEventListener('click',logout);
-render();
 addBookButton.addEventListener("click", removeDNone);
 cancelButton.addEventListener('click',addDNone);
 
@@ -202,6 +201,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         loginButton.classList.add('d-none');
         logoutButton.classList.remove('d-none');
         jumboName.innerText = displayname.toUpperCase() + "'s LIBRARY";
+
+        render();
     } else {
         loginButton.classList.remove('d-none');
         logoutButton.classList.add('d-none');
