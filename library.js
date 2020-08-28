@@ -24,8 +24,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 var ref = database.ref("index");
-var indexRef = ref.child('books-holder');
-var booksRef = indexRef.child('books');
+var usersRef = ref.child('users');
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -42,10 +41,23 @@ class Book {
     }
 }
 
+//check if anyone's logged in
+//if not, replace library content with "please login to access your library"
+//check if current user exists in usersRef
+//if they do, get their book list and render it
+
+//change add book to get current user
+//if current user = undefined, usersRef.[currentUser]=defaultBookArray
+//else books = usersRef.[currentUser]
+
+class user {
+    displayname:
+}
+
 const addBook = (title,author,pages,read) => {
     let newBook = new Book(title,author,pages,read);
     books[title] = newBook;
-    indexRef.set({
+    usersRef.set({
         books
     });
 }
@@ -141,8 +153,8 @@ const addDNone = () => {
 const removeBook = (element) => {
     let location = element.getAttribute('data-arrayLoc');
     delete books[location];
-    var indexRef = ref.child('books-holder');
-    indexRef.set({
+    var usersRef = ref.child('books-holder');
+ usersRef.set({
         books
     });
     render();
