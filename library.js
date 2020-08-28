@@ -44,6 +44,13 @@ class Book {
     }
 }
 
+const addBook = (title,author,pages,read) => {
+    let newBook = new Book(title,author,pages,read);
+    books[title] = newBook;
+    indexRef.set({
+        books
+    });
+}
 
 const render = () => {
     library.textContent = '';
