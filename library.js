@@ -25,9 +25,7 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 var ref = database.ref("index");
 var indexRef = ref.child('books-holder');
-
-var defaultRef = indexRef.child('default')
-var usersRef = indexRef.child('users');
+var booksRef = indexRef.child('books');
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
