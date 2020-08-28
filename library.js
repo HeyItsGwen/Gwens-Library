@@ -48,7 +48,6 @@ class Book {
 const render = () => {
     library.textContent = '';
     for (book in books){
-        if (books[book].hasOwnProperty('author')){
         //create div
         let containerDiv = document.createElement('div');
         //append div to library
@@ -106,7 +105,6 @@ const render = () => {
         //give button book array data
         removeButton.setAttribute('data-arrayLoc', book);
         removeButton.setAttribute('onCLick','removeBook(this)');
-        }
     }
 }
 
@@ -145,6 +143,22 @@ const removeBook = (element) => {
     render();
 }
 
+submitButton.addEventListener('click', () => {
+    let title = document.getElementById('title-input').value;
+    let author = document.getElementById('author-input').value;
+    let pages = document.getElementById('page-input').value;
+    let read = document.getElementById('read-input').checked ? true : false;
+
+    if (title == '' || author == '' || pages == ''){
+        console.log('warning');
+    } else {
+        let newBook = addBook(title,author,pages,read);
+        form.reset();
+        addDNone();
+        render();
+    }
+});
+
 const loginRedirect = () => {
     firebase.auth().signInWithRedirect(provider);
 }
@@ -172,6 +186,10 @@ const logout = () => {
       });
 }
 
+logoutButton.addEventListener('click',logout);
+addBookButton.addEventListener("click", removeDNone);
+cancelButton.addEventListener('click',addDNone);
+
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         let displayname = user.displayName.toString();
@@ -179,33 +197,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         logoutButton.classList.remove('d-none');
         jumboName.innerText = displayname.toUpperCase() + "'s LIBRARY";
 
-        
-        const addBook = (title,author,pages,read) => {
-            let newBook = new Book(title,author,pages,read);
-            books[title] = newBook;
-            usersRef.set({
-                books
-            });
-        }
-
-        submitButton.addEventListener('click', () => {
-            let title = document.getElementById('title-input').value;
-            let author = document.getElementById('author-input').value;
-            let pages = document.getElementById('page-input').value;
-            let read = document.getElementById('read-input').checked ? true : false;
-        
-            if (title == '' || author == '' || pages == ''){
-                console.log('warning');
-            } else {
-                let newBook = addBook(title,author,pages,read);
-                form.reset();
-                addDNone();
-                render();
-            }
-        });
-
-        addBookButton.addEventListener("click", removeDNone);
-        cancelButton.addEventListener('click',addDNone);
         render();
     } else {
         loginButton.classList.remove('d-none');
@@ -213,5 +204,3 @@ firebase.auth().onAuthStateChanged(function(user) {
         jumboName.innerText = 'YOUR LIBRARY';
     }
   });
-
-logoutButton.addEventListener('click',logout);
